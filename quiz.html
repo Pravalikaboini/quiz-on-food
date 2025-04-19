@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Quiz</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #fff5e1;
+  text-align: center;
+  padding: 30px;
+}
+
+.quiz-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 0 10px #363535;
+  width: 80%;
+  max-width: 500px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #ff7f50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  </style>
+  
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Food Quiz</h1>
+    <div id="question">Loading question...</div>
+    <div id="answers"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <div id="result"></div>
+    <script>
+    const quizData = [
+  {
+    question: "Which of these is a spicy Indian dish?",
+    options: ["Pasta", "Butter Chicken", "Sushi", "Tacos"],
+    answer: "Butter Chicken"
+  },
+  {
+    question: "Which ingredient is used in pizza?",
+    options: ["Cheese", "Chocolate", "Mango", "Ice cream"],
+    answer: "Cheese"
+  },
+  {
+    question: "Which fruit is yellow and long?",
+    options: ["Banana", "Strawberry", "Apple", "Grapes"],
+    answer: "Banana"
+  },
+  {
+    question: "What is the main ingredient in guacamole?",
+    options: ["Avocado", "Tomato", "Lettuce", "Cucumber"],
+    answer: "Avocado"
+  },
+  {
+    question: "Which drink is made from fermented grapes?",
+    options: ["Wine", "Juice", "Soda", "Tea"],
+    answer: "Wine"
+  },
+  {
+    question: "Which of these is a dairy product?",
+    options: ["Butter", "Bread", "Chicken", "Rice"],
+    answer: "Butter"
+  },
+  {
+    question: "Which dish is made from flour and water?",
+    options: ["Pasta", "Eggs", "Fish", "Ice cream"],
+    answer: "Pasta"
+  },
+  {
+    question: "Which of these is a sweet dessert?",
+    options: ["Cake", "Burger", "Soup", "Sandwich"],
+    answer: "Cake"
+  },
+  {
+  question: "Which of these is a fermented food?",
+  options: ["Yogurt", "Cucumber", "Potato", "Carrot"],
+  answer: "Yogurt"
+  },
+  { 
+  question: "Which drink is made from coffee beans?",
+  options: ["Coffee", "Milk", "Tea", "Juice"],
+  answer: "Coffee"
+  }
+];
+
+let current = 0;
+let score = 0;
+
+function showQuestion() {
+  const q = quizData[current];
+  document.getElementById("question").innerText = q.question;
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  q.options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.innerText = option;
+    btn.onclick = () => {
+      if (option === q.answer) {
+        score++;
+        alert("Correct!");
+      } else {
+        alert("Wrong!");
+      }
+    };
+    answersDiv.appendChild(btn);
+  });
+}
+
+function nextQuestion() {
+  current++;
+  if (current < quizData.length) {
+    showQuestion();
+  } else {
+    document.getElementById("result").innerText = `Quiz finished! Score: ${score}/${quizData.length}`;
+    document.getElementById("question").innerText = "";
+    document.getElementById("answers").innerHTML = "";
+  }
+}
+</script>
+  </div>
+
+</body>
+</html>
+
+
